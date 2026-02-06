@@ -108,6 +108,22 @@ We recommend using the [`docker-build`](./scripts/docker-build) script. It simpl
 
 > 💡 You can find instructions for building the code without Docker in the [HACKING] document.
 
+### GitHub Pages
+
+To build a static bundle suitable for GitHub Pages, set `GITHUB_PAGES=1` so the app
+uses the repository base path and emits a `404.html` fallback. In CI, `GITHUB_REPOSITORY`
+is used to infer the repo name automatically:
+
+```bash
+$ GITHUB_PAGES=1 npm run build
+```
+
+If you need a custom base path, set `BASE_PATH` explicitly:
+
+```bash
+$ BASE_PATH=/your-repo-name GITHUB_PAGES=1 npm run build
+```
+
 ### Integration with Internet Identity
 
 The [`using-dev-build`](./demos/using-dev-build) demo shows a documented example project that integrates Internet Identity. For more, please refer to the [Client Authentication Protocol section](https://internetcomputer.org/docs/current/references/ii-spec#client-authentication-protocol) of the [Internet Identity Specification][spec] to integration Internet Identity in your app from scratch. For a just-add-water approach using the [agent-js](https://github.com/dfinity/agent-js) library (also used by `using-dev-build`), check out Kyle Peacock's [blogpost](http://kyle-peacock.com/blog/dfinity/integrating-internet-identity/).
